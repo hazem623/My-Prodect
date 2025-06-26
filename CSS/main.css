@@ -38,6 +38,44 @@ a {
 }
 
 /* Start media query */
+/* Prevent horizontal scroll on very large screens (≥1450px) */
+@media (max-width: 1450px) {
+  /* 1) Hide any overflow beyond the viewport */
+  html, body {
+    overflow-x: hidden;
+  }
+  .container .flex-main .img-main::before {
+    display: none;
+  }
+  /* 2) Constrain your main container so its padding doesn’t push it off-screen */
+  .container {
+    max-width: 1200px;    /* or whatever your ideal content width is */
+    padding-left: 2rem;   /* shrink the padding a bit */
+    padding-right: 2rem;
+    margin: 0 auto;
+  }
+
+  /* 3) Tweak that ::before pseudo you’re shifting by -30% — it was sticking out */
+  .flex-main .img-main::before {
+    right: -10%;          /* bring it back in bounds */
+  }
+
+  /* 4) And if you have other big negative margins (like in .grid-text), reset them */
+  .grid-text {
+    margin-left: 0;       /* remove the 90px you’d added */
+  }
+}
+@media (max-width: 360px) {
+  .container .main h1 {
+    margin-right: 50px;
+  }
+  .container .grid-main .img-box-one {
+    margin-right: 50px;
+  }
+  .container .grid-main .img-box-one::after {
+    display: none;
+  }
+} 
 /*---------*/
 @media (max-width: 768px) {
   /* --------- */
@@ -62,7 +100,7 @@ a {
     display: none;
   }
   .container .main h1 {
-    margin: 24px;
+    margin-top: 24px;
     text-align: center;
   }
  .container .link {
@@ -104,19 +142,8 @@ a {
     max-width: 100%;
     border-radius: 1.5rem;
   }
-  .container .grid-main .img-box-one::after {
-    display: none; 
-  }
   .container .grid-main .img-box-one {
     margin-left: 28px;
-    height: 300px;
-  }
-  .container .grid-main .img-box-two {
-    height: 30rem;
-    margin-top: 200px;
-  }
-  .container .grid-main .img-box-two::after {
-    display: none; 
   }
   .container .grid-main .img-box-one::before {
     display: none; 
