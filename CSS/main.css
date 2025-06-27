@@ -61,8 +61,24 @@ a {
   }
 
   /* 4) And if you have other big negative margins (like in .grid-text), reset them */
-  .grid-text {
-    margin-left: 0;       /* remove the 90px you’d added */
+  .container .grid-text {
+    margin: 0;       /* remove the 90px you’d added */
+    width: 100%; /* ensure it takes full width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .grid-main .img-box-one::before {
+    display: none; /* Hide the pseudo-element on smaller screens */
+  }
+  .container .grid-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    text-align: center;
+    flex-wrap: wrap;
   }
 }
 @media (max-width: 360px) {
